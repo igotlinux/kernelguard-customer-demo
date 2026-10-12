@@ -1,0 +1,42 @@
+{
+  "failure_id": "fail_fast_relu_gcc_O2_strict",
+  "kernel_name": "fast_relu",
+  "failure_classification": "MISMATCH",
+  "details": "Error: Unknown kernel 'fast_relu_vectorized'\n",
+  "compiler_command": [
+    "/opt/homebrew/bin/g++",
+    "-std=c++17",
+    "-Iinclude",
+    "-c",
+    "src/kernels/cpu/fast_relu.cpp",
+    "-o",
+    "build/tmp_artifacts/fast_relu_gcc_-O2_strict.o",
+    "-O2",
+    "-fopt-info-vec-optimized",
+    "-fopt-info-vec-missed",
+    "-fno-fast-math",
+    "-fno-associative-math",
+    "-ffp-contract=off"
+  ],
+  "compiler_version": "g++ (Homebrew GCC 15.2.0) 15.2.0",
+  "target_hardware": "darwin arm64",
+  "failing_input": [
+    1.0,
+    2.0,
+    3.0,
+    4.0
+  ],
+  "expected_output": [
+    2.0,
+    4.0,
+    6.0,
+    8.0
+  ],
+  "actual_output": [
+    2.0,
+    4.0,
+    6.0,
+    0.0
+  ],
+  "observed_ulp": 0
+}

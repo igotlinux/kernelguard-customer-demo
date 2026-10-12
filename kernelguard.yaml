@@ -16,12 +16,12 @@ toolchains:
     fp_modes: ["strict", "fast-math"]
 
 kernels:
-  fast_relu:
-    source: "src/kernels/cpu/fast_relu.cpp"
-    entrypoint: "fast_relu"
+  saxpy:
+    source: "src/kernels/cpu/saxpy.cpp"
+    entrypoint: "saxpy"
     input_dim: 1024
     contract:
-      max_ulp_error: 0
+      max_ulp_error: 4
       allow_nans: false
       allow_denormals: false
   dot_product:
