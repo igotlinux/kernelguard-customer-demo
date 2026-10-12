@@ -1,0 +1,39 @@
+version: 1
+project_name: "Apex AI - High Performance Neural Kernels"
+
+toolchains:
+  gcc:
+    enabled: true
+    binary_cxx: "g++"
+    standard: "c++17"
+    opt_levels: ["-O0", "-O2", "-O3"]
+    fp_modes: ["strict", "fast-math"]
+  clang:
+    enabled: true
+    binary_cxx: "clang++"
+    standard: "c++17"
+    opt_levels: ["-O0", "-O2", "-O3"]
+    fp_modes: ["strict", "fast-math"]
+
+kernels:
+  fast_relu:
+    source: "src/kernels/cpu/fast_relu.cpp"
+    entrypoint: "fast_relu"
+    input_dim: 1024
+    contract:
+      max_ulp_error: 0
+      allow_nans: false
+      allow_denormals: false
+  dot_product:
+    source: "src/kernels/cpu/dot_product.cpp"
+    entrypoint: "dot_product"
+    input_dim: 1024
+    contract:
+      max_ulp_error: 24
+      allow_nans: false
+      allow_denormals: false
+
+profiles:
+  quick:
+    opt_levels: ["-O0", "-O2", "-O3"]
+    fp_modes: ["strict", "fast-math"]
